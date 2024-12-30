@@ -6,6 +6,10 @@ Carlos Rafael Mendoza Barrio de Mendoza
 
 Se encuentra en la carpeta /docs
 
+# URL de APP
+
+https://club-access-control.netlify.app
+
 # Caso práctico
 
 Se necesita desarrollar un sistema para gestionar los accesos de los clientes a un club recreativo. Actualmente, el acceso al club no está automatizado, por lo que el personal será responsable de registrar tanto las entradas como las salidas de los visitantes.
