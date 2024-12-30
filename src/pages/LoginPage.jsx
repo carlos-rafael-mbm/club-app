@@ -1,11 +1,12 @@
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/login/LoginForm";
+import { PageContainer, Title } from "./LoginPage.styles";
 
 const LoginPage = () => {
   return (
-    <div>
-      <h1>Control de Ingresos y salidas al Club Lilab</h1>
+    <PageContainer>
+      <Title>Control de Ingresos y salidas al Club Lilab</Title>
       <LoginForm />
-    </div>
+    </PageContainer>
   );
 };
 

@@ -2,6 +2,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClientTypes } from "../../../store/clientTypeSlice";
+import {
+  Button,
+  ButtonGroup,
+  Form,
+  Input,
+  ModalContainer,
+  ModalOverlay,
+  Select,
+  Title,
+} from "./ClientFormModal.styles";
 
 const ClientFormModal = ({ onSave, onClose }) => {
   const dispatch = useDispatch();
@@ -33,54 +43,58 @@ const ClientFormModal = ({ onSave, onClose }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Agregar cliente</h2>
-        <input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Nombres"
-          required
-        />
-        <input
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email"
-          required
-        />
-        <input
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="Teléfono"
-          required
-        />
-        <select
-          name="clientTypeId"
-          value={formData.clientTypeId}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Selecciona Tipo de cliente</option>
-          {isClientTypesLoading ? (
-            <option>Cargando...</option>
-          ) : (
-            clientTypes.map((ct) => (
-              <option key={ct.id} value={ct.id}>
-                {ct.name}
-              </option>
-            ))
-          )}
-        </select>
-        <button type="submit">Guardar</button>
-        <button type="button" onClick={onClose}>
-          Cancelar
-        </button>
-      </form>
-    </div>
+    <ModalOverlay>
+      <ModalContainer>
+        <Form onSubmit={handleSubmit}>
+          <Title>Agregar cliente</Title>
+          <Input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Nombres"
+            required
+          />
+          <Input
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            required
+          />
+          <Input
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Teléfono"
+            required
+          />
+          <Select
+            name="clientTypeId"
+            value={formData.clientTypeId}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Selecciona Tipo de cliente</option>
+            {isClientTypesLoading ? (
+              <option>Cargando...</option>
+            ) : (
+              clientTypes.map((ct) => (
+                <option key={ct.id} value={ct.id}>
+                  {ct.name}
+                </option>
+              ))
+            )}
+          </Select>
+          <ButtonGroup>
+            <Button type="submit">Guardar</Button>
+            <Button type="button" onClick={onClose}>
+              Cancelar
+            </Button>
+          </ButtonGroup>
+        </Form>
+      </ModalContainer>
+    </ModalOverlay>
   );
 };
 

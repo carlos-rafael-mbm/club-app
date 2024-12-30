@@ -8,6 +8,12 @@ import {
 } from "../../../store/userSlice";
 import UserTable from "./UserTable";
 import UserFormModal from "./UserFormModal";
+import {
+  AdminPanelContainer,
+  Button,
+  LoadingMessage,
+  Title,
+} from "./AdminPanel.styles";
 
 const AdminPanel = () => {
   const dispatch = useDispatch();
@@ -35,11 +41,11 @@ const AdminPanel = () => {
   };
 
   return (
-    <div>
-      <h2>Panel de usuarios</h2>
-      <button onClick={() => setModalOpen(true)}>Agregar usuario</button>
+    <AdminPanelContainer>
+      <Title>Panel de usuarios</Title>
+      <Button onClick={() => setModalOpen(true)}>Agregar usuario</Button>
       {isLoading ? (
-        <p>Cargando...</p>
+        <LoadingMessage>Cargando...</LoadingMessage>
       ) : (
         <UserTable
           users={users}
@@ -59,7 +65,7 @@ const AdminPanel = () => {
           onClose={() => setModalOpen(false)}
         />
       )}
-    </div>
+    </AdminPanelContainer>
   );
 };
 

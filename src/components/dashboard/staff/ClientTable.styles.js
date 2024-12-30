@@ -1,0 +1,132 @@
+import styled from "styled-components";
+import { lighten } from "polished";
+
+export const Container = styled.div`
+  padding: 2rem;
+  background: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
+`;
+
+export const Heading = styled.h3`
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.primary};
+  text-align: center;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.8rem;
+  }
+`;
+
+export const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+`;
+
+export const TableHeader = styled.th`
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+
+  &:first-child {
+    border-top-left-radius: 8px;
+  }
+
+  &:last-child {
+    border-top-right-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const TableRow = styled.tr`
+  &:nth-child(even) {
+    background-color: ${({ theme }) => theme.colors.background};
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => lighten(0.4, theme.colors.secondary)};
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    background-color: ${({ theme }) => theme.colors.white};
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    align-self: center;
+  }
+`;
+
+export const TableCell = styled.td`
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.text};
+  font-size: 0.875rem;
+
+  &:last-child {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border: none;
+
+    &:before {
+      content: attr(data-label);
+      font-weight: bold;
+      color: ${({ theme }) => theme.colors.text};
+      margin-right: 1rem;
+    }
+  }
+`;
+
+export const Button = styled.button`
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.secondary};
+  }
+`;
+
+export const Message = styled.p`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text};
+  text-align: center;
+`;

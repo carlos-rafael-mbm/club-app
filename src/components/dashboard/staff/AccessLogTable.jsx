@@ -6,6 +6,27 @@ import {
   addExit,
   fetchAccessLogs,
 } from "../../../store/accessLogSlice";
+import {
+  Button,
+  Container,
+  FilterContainer,
+  LoadingMessage,
+  Select,
+  StyledTable,
+  TableCell,
+  TableHeader,
+  TableRow,
+  Title,
+} from "./AccessLogTable.styles";
+import { format } from "date-fns";
+
+const formatDate = (dateString) => {
+  try {
+    return format(new Date(dateString), "dd/MM/yyyy HH:mm");
+  } catch {
+    return "Invalid Date"; // Fallback in case of an error
+  }
+};
 
 const AccessLogTable = () => {
   const dispatch = useDispatch();
@@ -55,14 +76,14 @@ const AccessLogTable = () => {
   };
 
   return (
-    <div>
-      <h3>Ingreso al club</h3>
-      <div>
+    <Container>
+      <Title>Ingreso al club</Title>
+      <FilterContainer>
         <label>Selecciona un cliente: </label>
         {isClientsLoading ? (
-          <p>Cargando clientes...</p>
+          <LoadingMessage>Cargando clientes...</LoadingMessage>
         ) : (
-          <select
+          <Select
             value={selectedClientId}
             onChange={(e) => setSelectedClientId(e.target.value)}
           >
@@ -72,13 +93,13 @@ const AccessLogTable = () => {
                 {client.name}
               </option>
             ))}
-          </select>
+          </Select>
         )}
-        <button onClick={handleRegisterEntry} disabled={!selectedClientId}>
+        <Button onClick={handleRegisterEntry} disabled={!selectedClientId}>
           Registrar entrada
-        </button>
-      </div>
-      <div>
+        </Button>
+      </FilterContainer>
+      <FilterContainer>
         <label>Fecha inicio: </label>
         <input
           type="date"
@@ -98,38 +119,38 @@ const AccessLogTable = () => {
         <button onClick={() => dispatch(fetchAccessLogs(filters))}>
           Buscar
         </button>
-      </div>
+      </FilterContainer>
       {isLoading ? (
         <p>Cargando...</p>
       ) : (
-        <table>
+        <StyledTable>
           <thead>
             <tr>
-              <th>Client ID</th>
-              <th>Entry Time</th>
-              <th>Exit Time</th>
-              <th>Actions</th>
+              <TableHeader>Fecha/Hora de ingreso</TableHeader>
+              <TableHeader>Fecha/Hora de salida</TableHeader>
+              <TableHeader>Acciones</TableHeader>
             </tr>
           </thead>
           <tbody>
             {accessLogs.map((log) => (
-              <tr key={log.id}>
-                <td>{log.clientId}</td>
-                <td>{log.entryTime}</td>
-                <td>{log.exitTime || ""}</td>
-                <td>
+              <TableRow key={log.id}>
+                <TableCell>{formatDate(log.entryTime)}</TableCell>
+                <TableCell>
+                  {log.exitTime ? formatDate(log.exitTime) : ""}
+                </TableCell>
+                <TableCell>
                   {!log.exitTime && (
-                    <button onClick={() => handleRegisterExit(log.id)}>
+                    <Button onClick={() => handleRegisterExit(log.id)}>
                       Marcar salida
-                    </button>
+                    </Button>
                   )}
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
           </tbody>
-        </table>
+        </StyledTable>
       )}
-    </div>
+    </Container>
   );
 };
 

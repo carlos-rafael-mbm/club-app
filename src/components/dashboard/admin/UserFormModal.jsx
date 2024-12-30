@@ -2,6 +2,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRoles } from "../../../store/roleSlice";
+import {
+  Button,
+  ButtonGroup,
+  Form,
+  Input,
+  ModalContainer,
+  ModalOverlay,
+  Select,
+  Title,
+} from "./UserFormModal.styles";
 
 const UserFormModal = ({ user, onSave, onClose }) => {
   const dispatch = useDispatch();
@@ -45,62 +55,66 @@ const UserFormModal = ({ user, onSave, onClose }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>{user ? "Editar usuario" : "Agregar usuario"}</h2>
-        <input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Nombres"
-          required
-        />
-        <input
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          placeholder="Usuario"
-          required
-        />
-        <input
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email"
-          required
-        />
-        <input
-          name="password"
-          type="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Contraseña"
-          required
-        />
-        <select
-          name="roleId"
-          value={formData.roleId}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Selecciona Rol</option>
-          {isRolesLoading ? (
-            <option>Cargando...</option>
-          ) : (
-            roles.map((role) => (
-              <option key={role.id} value={role.id}>
-                {role.name}
-              </option>
-            ))
-          )}
-        </select>
-        <button type="submit">Guardar</button>
-        <button type="button" onClick={onClose}>
-          Cancelar
-        </button>
-      </form>
-    </div>
+    <ModalOverlay>
+      <ModalContainer>
+        <Form onSubmit={handleSubmit}>
+          <Title>{user ? "Editar usuario" : "Agregar usuario"}</Title>
+          <Input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Nombres"
+            required
+          />
+          <Input
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            placeholder="Usuario"
+            required
+          />
+          <Input
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            required
+          />
+          <Input
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Contraseña"
+            required
+          />
+          <Select
+            name="roleId"
+            value={formData.roleId}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Selecciona Rol</option>
+            {isRolesLoading ? (
+              <option>Cargando...</option>
+            ) : (
+              roles.map((role) => (
+                <option key={role.id} value={role.id}>
+                  {role.name}
+                </option>
+              ))
+            )}
+          </Select>
+          <ButtonGroup>
+            <Button type="submit">Guardar</Button>
+            <Button type="button" onClick={onClose}>
+              Cancelar
+            </Button>
+          </ButtonGroup>
+        </Form>
+      </ModalContainer>
+    </ModalOverlay>
   );
 };
 

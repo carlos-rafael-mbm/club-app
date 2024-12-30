@@ -1,3 +1,12 @@
+import {
+  ActionButton,
+  DisabledText,
+  StyledTable,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from "./UserTable.styles";
+
 /* eslint-disable react/prop-types */
 const UserTable = ({ users, onEdit, onDelete }) => {
   if (!users || users.length <= 0) {
@@ -8,37 +17,43 @@ const UserTable = ({ users, onEdit, onDelete }) => {
     );
   }
   return (
-    <table>
+    <StyledTable>
       <thead>
         <tr>
-          <th>Nombres</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Rol</th>
-          <th>Estado</th>
-          <th>Acciones</th>
+          <TableHeader>Nombres</TableHeader>
+          <TableHeader>Username</TableHeader>
+          <TableHeader>Email</TableHeader>
+          <TableHeader>Rol</TableHeader>
+          <TableHeader>Estado</TableHeader>
+          <TableHeader>Acciones</TableHeader>
         </tr>
       </thead>
       <tbody>
         {users.map((user) => (
-          <tr key={user.id}>
-            <td>{user.name}</td>
-            <td>{user.username}</td>
-            <td>{user.email}</td>
-            <td>{user.role.name}</td>
-            <td>{user.isActive ? "Activo" : "Inactivo"}</td>
-            <td>
+          <TableRow key={user.id}>
+            <TableCell>{user.name}</TableCell>
+            <TableCell>{user.username}</TableCell>
+            <TableCell>{user.email}</TableCell>
+            <TableCell>{user.role.name}</TableCell>
+            <TableCell>
+              {user.isActive ? "Activo" : <DisabledText>Inactivo</DisabledText>}
+            </TableCell>
+            <TableCell>
               {user.isActive && (
                 <>
-                  <button onClick={() => onEdit(user)}>Editar</button>
-                  <button onClick={() => onDelete(user.id)}>Borrar</button>
+                  <ActionButton onClick={() => onEdit(user)}>
+                    Editar
+                  </ActionButton>
+                  <ActionButton onClick={() => onDelete(user.id)}>
+                    Borrar
+                  </ActionButton>
                 </>
               )}
-            </td>
-          </tr>
+            </TableCell>
+          </TableRow>
         ))}
       </tbody>
-    </table>
+    </StyledTable>
   );
 };
 

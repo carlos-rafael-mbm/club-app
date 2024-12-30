@@ -2,6 +2,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClients, createClient } from "../../../store/clientSlice";
 import ClientFormModal from "./ClientFormModal";
+import {
+  Button,
+  Container,
+  Heading,
+  Message,
+  StyledTable,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from "./ClientTable.styles";
 
 const ClientTable = () => {
   const dispatch = useDispatch();
@@ -18,36 +28,36 @@ const ClientTable = () => {
   };
 
   return (
-    <div>
-      <h3>Panel de clientes</h3>
-      <button onClick={() => setModalOpen(true)}>Agregar cliente</button>
+    <Container>
+      <Heading>Panel de clientes</Heading>
+      <Button onClick={() => setModalOpen(true)}>Agregar cliente</Button>
       {isLoading ? (
-        <p>Cargando...</p>
+        <Message>Cargando...</Message>
       ) : (
         <>
           {!clients || clients.length <= 0 ? (
-            <p>No existen clientes registrados</p>
+            <Message>No existen clientes registrados</Message>
           ) : (
-            <table>
+            <StyledTable>
               <thead>
                 <tr>
-                  <th>Nombre</th>
-                  <th>Email</th>
-                  <th>Teléfono</th>
-                  <th>Tipo</th>
+                  <TableHeader>Nombre</TableHeader>
+                  <TableHeader>Email</TableHeader>
+                  <TableHeader>Teléfono</TableHeader>
+                  <TableHeader>Tipo</TableHeader>
                 </tr>
               </thead>
               <tbody>
                 {clients.map((client) => (
-                  <tr key={client.id}>
-                    <td>{client.name}</td>
-                    <td>{client.email}</td>
-                    <td>{client.phone}</td>
-                    <td>{client.clientType.name}</td>
-                  </tr>
+                  <TableRow key={client.id}>
+                    <TableCell>{client.name}</TableCell>
+                    <TableCell>{client.email}</TableCell>
+                    <TableCell>{client.phone}</TableCell>
+                    <TableCell>{client.clientType.name}</TableCell>
+                  </TableRow>
                 ))}
               </tbody>
-            </table>
+            </StyledTable>
           )}
         </>
       )}
@@ -57,7 +67,7 @@ const ClientTable = () => {
           onClose={() => setModalOpen(false)}
         />
       )}
-    </div>
+    </Container>
   );
 };
 

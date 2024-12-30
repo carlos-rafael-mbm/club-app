@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginStart, loginSuccess, loginFailure } from "../store/authSlice";
-import { login } from "../services/authService";
-import { FormContainer, Input, Button, ErrorMessage } from "./styles";
+import { loginStart, loginSuccess, loginFailure } from "../../store/authSlice";
+import { login } from "../../services/authService";
+import {
+  FormContainer,
+  Input,
+  Button,
+  ErrorMessage,
+  Title,
+} from "./LoginForm.styles";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -31,7 +37,7 @@ const LoginForm = () => {
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <h2>Ingresar</h2>
+      <Title>Ingresar</Title>
       <Input
         type="text"
         name="emailUsername"
