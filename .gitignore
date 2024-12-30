@@ -31,5 +31,5 @@ dist/
 *.sw?
 
 # Archivos de lock para dependencias específicas
-package-lock.json
-yarn.lock
+# package-lock.json
+# yarn.lock
