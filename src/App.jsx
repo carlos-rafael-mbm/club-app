@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loginSuccess, logout } from "./store/authSlice";
+import RedirectToDashboard from "./components/RedirectToDashboard";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<RedirectToDashboard />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/dashboard"
