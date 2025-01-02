@@ -24,7 +24,7 @@ const formatDate = (dateString) => {
   try {
     return format(new Date(dateString), "dd/MM/yyyy HH:mm");
   } catch {
-    return "Invalid Date"; // Fallback in case of an error
+    return "Invalid Date";
   }
 };
 

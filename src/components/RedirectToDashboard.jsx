@@ -8,7 +8,6 @@ const RedirectToDashboard = () => {
     return <Navigate to="/login" replace />;
   }
 
-  // Redirige al dashboard si está autenticado
   return <Navigate to="/dashboard" replace />;
 };
 

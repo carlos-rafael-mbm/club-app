@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClientTypes } from "../../../store/clientTypeSlice";
@@ -12,6 +11,7 @@ import {
   Select,
   Title,
 } from "./ClientFormModal.styles";
+import PropTypes from "prop-types";
 
 const ClientFormModal = ({ onSave, onClose }) => {
   const dispatch = useDispatch();
@@ -96,6 +96,11 @@ const ClientFormModal = ({ onSave, onClose }) => {
       </ModalContainer>
     </ModalOverlay>
   );
+};
+
+ClientFormModal.propTypes = {
+  onSave: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 export default ClientFormModal;

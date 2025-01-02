@@ -6,8 +6,8 @@ import {
   TableHeader,
   TableRow,
 } from "./UserTable.styles";
+import PropTypes from "prop-types";
 
-/* eslint-disable react/prop-types */
 const UserTable = ({ users, onEdit, onDelete }) => {
   if (!users || users.length <= 0) {
     return (
@@ -55,6 +55,12 @@ const UserTable = ({ users, onEdit, onDelete }) => {
       </tbody>
     </StyledTable>
   );
+};
+
+UserTable.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object),
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 export default UserTable;

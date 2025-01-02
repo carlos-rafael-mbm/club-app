@@ -10,6 +10,14 @@ Se encuentra en la carpeta /docs
 
 https://club-access-control.netlify.app
 
+# Credenciales
+
+Usuario: admin
+Password: 123456
+
+Usuario: usuarioclub
+Password: 654321
+
 # Caso práctico
 
 Se necesita desarrollar un sistema para gestionar los accesos de los clientes a un club recreativo. Actualmente, el acceso al club no está automatizado, por lo que el personal será responsable de registrar tanto las entradas como las salidas de los visitantes.

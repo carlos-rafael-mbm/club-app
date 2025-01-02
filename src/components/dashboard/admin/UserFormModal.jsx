@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRoles } from "../../../store/roleSlice";
@@ -12,6 +11,7 @@ import {
   Select,
   Title,
 } from "./UserFormModal.styles";
+import PropTypes from "prop-types";
 
 const UserFormModal = ({ user, onSave, onClose }) => {
   const dispatch = useDispatch();
@@ -116,6 +116,12 @@ const UserFormModal = ({ user, onSave, onClose }) => {
       </ModalContainer>
     </ModalOverlay>
   );
+};
+
+UserFormModal.propTypes = {
+  user: PropTypes.object,
+  onSave: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 export default UserFormModal;

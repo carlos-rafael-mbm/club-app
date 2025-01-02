@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import { NavbarContainer, Title, LogoutButton } from "./Navbar.styles";
+import PropTypes from "prop-types";
 
 const Navbar = ({ user, handleLogout }) => {
   return (
@@ -8,6 +8,11 @@ const Navbar = ({ user, handleLogout }) => {
       <LogoutButton onClick={handleLogout}>Salir</LogoutButton>
     </NavbarContainer>
   );
+};
+
+Navbar.propTypes = {
+  user: PropTypes.string,
+  handleLogout: PropTypes.func.isRequired,
 };
 
 export default Navbar;

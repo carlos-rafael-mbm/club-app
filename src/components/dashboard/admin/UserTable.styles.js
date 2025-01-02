@@ -11,10 +11,10 @@ export const StyledTable = styled.table`
   overflow: hidden;
 
   @media (max-width: 768px) {
-    display: flex; /* Cambiar tabla a contenedor flex */
+    display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar los bloques */
-    gap: 1rem; /* Espaciado entre bloques */
+    align-items: center;
+    gap: 1rem;
   }
 `;
 
